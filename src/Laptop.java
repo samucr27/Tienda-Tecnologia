@@ -1,11 +1,22 @@
-public abstract class Laptop extends Producto implements Vendible{
+public class Laptop extends Producto implements Vendible {
     private String procesador;
     private int memoriaRAM;
 
-    public Laptop(String nombre, String marca, double precio, int cantStock, String procesador, int memoriaRAM) {
-        super(nombre, marca, precio, cantStock);
+    public Laptop(String nombre, String marca, double precio, int cantidadStock, String procesador, int memoriaRAM) {
+        super(nombre, marca, precio, cantidadStock);
         this.procesador = procesador;
         this.memoriaRAM = memoriaRAM;
+    }
+
+    @Override
+    public void mostrarDetalles() {
+        System.out.println("Laptop - " + toString());
+    }
+
+    @Override
+    public double calcularPrecioVenta(int cantidad) {
+        double total = precio * cantidad;
+        return cantidad > 5 ? total * 0.9 : total;
     }
 
     public String getProcesador() {
@@ -26,22 +37,7 @@ public abstract class Laptop extends Producto implements Vendible{
 
     @Override
     public String toString() {
-        return "Laptop{" +
-                "procesador='" + procesador + '\'' +
-                ", memoriaRAM=" + memoriaRAM +
-                '}';
+        return super.toString() + ", Procesador: " + procesador + ", RAM: " + memoriaRAM + "GB";
     }
-
-    public void mostrarDetalles() {
-        System.out.println("Laptop: " + nombre + ", Marca: " + marca + ", Procesador: " + procesador + ", RAM: " + memoriaRAM + "GB, Precio: $" + precio + ", Stock: " + cantStock);
-    }
-
-    public double calcularPrecioVenta(int cantidad) {
-        double total = precio * cantidad;
-        if (cantidad > 5) {
-            total *= 0.9; // 10% de descuento
-        }
-        return total;
-    }
-
 }
+

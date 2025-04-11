@@ -2,16 +2,23 @@ public abstract class Producto {
     protected String nombre;
     protected String marca;
     protected double precio;
-    protected int cantStock;
+    protected int cantidadStock;
 
-    public Producto() {
-    }
-
-    public Producto(String nombre, String marca, double precio, int cantStock) {
+    public Producto(String nombre, String marca, double precio, int cantidadStock) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
-        this.cantStock = cantStock;
+        this.cantidadStock = cantidadStock;
+    }
+
+    public abstract void mostrarDetalles();
+
+    public boolean reducirStock(int cantidad) {
+        if (cantidad <= cantidadStock) {
+            cantidadStock -= cantidad;
+            return true;
+        }
+        return false;
     }
 
     public String getNombre() {
@@ -38,26 +45,17 @@ public abstract class Producto {
         this.precio = precio;
     }
 
-    public int getCantStock() {
-        return cantStock;
+    public int getCantidadStock() {
+        return cantidadStock;
     }
 
-    public void setCantStock(int cantStock) {
-        this.cantStock = cantStock;
+    public void setCantidadStock(int cantidadStock) {
+        this.cantidadStock = cantidadStock;
     }
 
     @Override
     public String toString() {
-        return "Producto{" +
-                "nombre='" + nombre + '\'' +
-                ", marca='" + marca + '\'' +
-                ", precio=" + precio +
-                ", cantStock=" + cantStock +
-                '}';
-    }
-
-
-    public void reduStock(int cantidad) {
-
+        return "Nombre: " + nombre + ", Marca: " + marca + ", Precio: $" + precio + ", Stock: " + cantidadStock;
     }
 }
+

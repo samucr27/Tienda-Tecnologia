@@ -1,3 +1,4 @@
 public interface Vendible {
-        double calPrecioVenta(int cantidad);
+        double calcularPrecioVenta(int cantidad);
 }
+

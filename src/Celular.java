@@ -1,46 +1,43 @@
-public abstract class Celular extends Producto implements Vendible{
-    private int capBateria;
-    private double camResol;
+public class Celular extends Producto implements Vendible {
+    private int capacidadBateria;
+    private String camaraResolucion;
 
-    public Celular(String nombre, String marca, double precio, int cantStock, int capBancaria, double camResol) {
-        super(nombre, marca, precio, cantStock);
-        this.capBateria = capBancaria;
-        this.camResol = camResol;
+    public Celular(String nombre, String marca, double precio, int cantidadStock, int capacidadBateria, String camaraResolucion) {
+        super(nombre, marca, precio, cantidadStock);
+        this.capacidadBateria = capacidadBateria;
+        this.camaraResolucion = camaraResolucion;
     }
 
-    public int getCapBancaria() {
-        return capBateria;
+    @Override
+    public void mostrarDetalles() {
+        System.out.println("Celular - " + toString());
     }
 
-    public void setCapBancaria(int capBancaria) {
-        this.capBateria = capBancaria;
+    @Override
+    public double calcularPrecioVenta(int cantidad) {
+        double total = precio * cantidad;
+        return cantidad > 5 ? total * 0.95 : total;
     }
 
-    public double getCamResol() {
-        return camResol;
+    public int getCapacidadBateria() {
+        return capacidadBateria;
     }
 
-    public void setCamResol(double camResol) {
-        this.camResol = camResol;
+    public void setCapacidadBateria(int capacidadBateria) {
+        this.capacidadBateria = capacidadBateria;
+    }
+
+    public String getCamaraResolucion() {
+        return camaraResolucion;
+    }
+
+    public void setCamaraResolucion(String camaraResolucion) {
+        this.camaraResolucion = camaraResolucion;
     }
 
     @Override
     public String toString() {
-        return "Celular{" +
-                "capBancaria=" + capBateria +
-                ", camResol=" + camResol +
-                '}';
-    }
-
-    public void mostrarDetalles() {
-        System.out.println("Celular: " + nombre + ", Marca: " + marca + ", Batería: " + capBateria + "mAh, Cámara: " + camResol + "mp, Precio: $" + precio + ", Stock: " + cantStock);
-    }
-
-    public double calcularPrecioVenta(int cantidad) {
-        double total = precio * cantidad;
-        if (cantidad > 5) {
-            total *= 0.85;
-        }
-        return total;
+        return super.toString() + ", Batería: " + capacidadBateria + "mAh, Cámara: " + camaraResolucion;
     }
 }
+
